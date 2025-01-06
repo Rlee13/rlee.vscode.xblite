@@ -1,0 +1,138 @@
+{
+	"name": "xblite",
+	"displayName": "XBLite Extension",
+	"description": "XBLite language VSCode extension support for *.x, *.xl, *.xbl files",
+	"version": "0.0.2",
+	"icon": "./images/xl-icon-light.png",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Rlee13/rlee.vscode.xblite"
+	},
+	"publisher": "RLee",
+	"author": "RLee",
+	"engines": {
+		"vscode": "^1.70.0"
+	},
+	"activationEvents": [
+		"onLanguage: xl"
+	],
+	"main": "client/main",
+	"categories": [
+		"Programming Languages",
+		"Snippets",
+		"Themes"
+	],
+	"scripts": {},
+	"contributes": {
+		"themes": [
+			{
+				"label": "XBLite-Theme",
+				"uiTheme": "vs-dark",
+				"path": "./themes/XL-Theme-color-theme.json"
+			}
+		],
+		"languages": [
+			{
+				"id": "xl",
+				"aliases": [
+					"XL",
+					"xl"
+				],
+				"extensions": [
+					".x",
+					".xl",
+					".xbl"
+				],
+				"configuration": "./language-configuration.json",
+				"icon": {
+					"dark": "./images/xl-icon-dark.png",
+					"light": "./images/xl-icon-light.png"
+				}
+			},
+			{
+				"id": "xlmak",
+				"extensions": [
+					".xl.mak"
+				],
+				"icon": {
+					"dark": "./images/xl-icon-dark.png",
+					"light": "./images/xl-icon-light.png"
+				}
+			}
+		],
+		"grammars": [
+			{
+				"language": "xl",
+				"scopeName": "source.xl",
+				"path": "./syntaxes/xblite.tmLanguage.json"
+			}
+		],
+		"snippets": [
+			{
+				"language": "xl",
+				"path": "./snipets/xblite-snippets.json"
+			}
+		],
+		"taskDefinitions": [
+			{
+				"type": "compile_XL",
+				"required": [
+					"task"
+				],
+				"properties": {
+					"task": {
+						"type": "string",
+						"description": "Compile XBLite task"
+					}
+				}
+			},
+			{
+				"type": "build_XL",
+				"required": [
+					"task"
+				],
+				"properties": {
+					"task": {
+						"type": "string",
+						"description": "Build XBLite task"
+					}
+				}
+			}
+		],
+		"commands": [
+			
+		],
+		"configuration": {
+			"type": "object",
+			"title": "XBLite LSP configuration",
+			"properties": {
+				"xblite_server.maxNumberOfProblems": {
+					"scope": "resource",
+					"type": "number",
+					"default": 100,
+					"description": "Controls the maximum number of problems produced by the server."
+				},
+				"xblite_server.trace.server": {
+					"scope": "window",
+					"type": "string",
+					"format": "json",
+					"enum": [
+						"off",
+						"messages",
+						"verbose"
+					],
+					"default": "verbose",
+					"description": "Traces the communication between VS Code and the language server."
+				}
+			}
+		}
+	},
+	"dependencies": {
+		"vscode-languageclient": "^8.1.0",
+		"vscode-languageserver": "^8.1.0",
+		"vscode-languageserver-textdocument": "^1.0.8"
+	},
+	"__metadata": {
+		"size": 45825560
+	}
+}

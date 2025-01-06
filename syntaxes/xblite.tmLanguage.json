@@ -1,0 +1,92 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "XBLite Programming Language",
+	"fileTypes": ["x", "xl", "xbl"],
+	"patterns": [
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"include": "#xst"
+		},
+		{
+			"include": "#xst1"
+		},
+		{
+			"include": "#xlconst"
+		},
+		{
+			"include": "#character_literal"
+		},
+		{
+			"include": "#comments"
+		}
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [{
+				"name": "keyword.control.xl",
+				"match": "\\b(ABS|ALL|ASC|ASM|ATTACH|AUTO|AUTOS|AUTOX|BITFIELD|CASE|CEIL|CFUNCTION|CLEAR|CLOSE|CLR|CONSOLE|CSIZE|DATA|DCOMPLEX|DEC|DECLARE|DHIGH|DIM|DLOW|DMAKE|DO|DOUBLE|DOUBLEAT|ELSE|END|ENDIF|EOF|ERROR|EXIT|EXPLICIT|EXPORT|EXTERNAL|EXTS|EXTU|FALSE|FIX|FOR|FUNCADDR|FUNCADDRESS|FUNCTION|GHIGH|GIANT|GIANTAT|GLOW|GMAKE|GOADDR|GOADDRESS|GOSUB|GOTO|HIGH0|HIGH1|HIWORD|IF|IFF|IFT|IFZ|IMPORT|INC|INCHR|INCHRI|INSTR|INSTRI|INT|INTERNAL|LEN|LIBRARY|LOF|LONGDOUBLE|LONGDOUBLEAT|LOOP|LOWORD|MAKE|MAKEFILE|MAX|MIN|MOD|NEXT|NULL|OPEN|PACKED|POF|POWER|PRINT|PROGRAM|QUIT|READ|REDIM|RETURN|RINCHR|RINCHRI|RINSTR|RINSTRI|ROTATEL|ROUND|ROUNDNE|ROTATER|SBYTE|SBYTEAT|SCOMPLEX|SEEK|SELECT|SET|SFUNCTION|SGN|SHARED|SHELL|SIGN|SINGLE|SINGLEAT|SIZE|SLONG|SLONGAT|SMAKE|SSHORT|SSHORTAT|STATIC|STEP|STOP|STRING|SUB|SUBADDR|SUBADDRESS|SWAP|TAB|THEN|TO|TRUE|TYPE|UBOUND|UBYTE|UBYTEAT|ULONG|ULONGAT|UNION|UNTIL|USHORT|USHORTAT|VERSION|VOID|WHILE|WRITE|XLONG|XLONGAT|XMAKE|OR|AND|XOR|NOT)\\b"
+			},
+			{
+				"name": "keyword.control.xl",
+				"begin": "\\b(BIN|BINB|CHR|CJUST|CSIZE|CSTRING|ERROR|FORMAT|HEX|HEXX|INFILE|INLINE|LCASE|LCLIP|LEFT|LJUST|LTRIM|MID|NULL|OCT|OCTO|PROGRAM|RCLIP|RIGHT|RJUST|RTRIM|SIGNED|SPACE|STR|STRING|STUFF|TRIM|UCASE|VERSION)\\b",
+				"end": "\\$"
+			}]
+		},
+		"strings": {
+			"patterns": [{
+				"name": "string.quoted.double.xl",
+				"begin": "\"",
+				"end": "\"",
+				"patterns": [
+					{
+						"name": "constant.character.escape.xl",
+						"match": "\\\\."
+					}
+				]
+			}]
+		},
+		"xst": {
+			"patterns": [{
+				"name": "support.function.xl",
+				"match": "\\b(FPClassifyL|IsFiniteL|IsInfL|IsNanL|IsNormalL|IsSubNormalL|IsZeroL|HIWORD|LOWORD|MAKELONG|PowL|RGB|SignBitL|XstAbend|XstAlert|XstBackArrayToBinArray|XstBinArrayToBackArray|XstBinRead|XstBinWrite|XstBytesToBound|XstCall|XstCauseException|XstCenterWindow|XstChangeDirectory|XstCompareStrings|XstCopyArray|XstCopyDirectory|XstCopyFile|XstCopyMemory|XstDateAndTimeToFileTime|XstDecomposePathname|XstDeleteFile|XstDeleteLines|XstEnableFPExceptions|XstErrorNameToNumber|XstErrorNumberToName|XstExceptionNameToNumber|XstExceptionNumberToName|XstExceptionToSystemException|XstFileExists|XstFileTimeToDateAndTime|XstFileToSystemFile|XstFindArray|XstFindFile|XstFindFiles|XstFindMemoryMatch|XstGetClipboard|XstGetCommandLine|XstGetCommandLineArguments|XstGetCPUName|XstGetCurrentDirectory|XstGetDateAndTime|XstGetDateAndTimeFormatted|XstGetDrives|XstGetEndian|XstGetEndianName|XstGetEnvironmentVariable|XstGetEnvironmentVariables|XstGetException|XstGetExceptionFunction|XstGetExceptionInformation|XstGetExecutionPathArray|XstGetFileAttributes|XstGetFiles|XstGetFilesAndAttributes|XstGetFPUControlWord|XstGetLocalDateAndTime|XstGetMemoryMap|XstGetOSName|XstGetOSVersion|XstGetPathComponents|XstGetSystemError|XstGetSystemTime|XstGetTypedArray|XstGuessFilename|XstIsAbsolutePath|XstIsDataDimension|XstKillTimer|XstLoadString|XstLoadStringArray|XstLockFileSection|XstLog|XstLTRIM|XstMakeDirectory|XstMultiStringToStringArray|XstParseStringToStringArray|XstPathToAbsolutePath|XstQuickSort|XstRaiseException|XstRandom|XstRandomCreateSeed|XstRandomSeed|XstRandomUniform|XstReadString|XstRegisterException|XstRenameFile|XstReplace|XstReplaceArray|XstReplaceLines|XstRTRIM|XstSaveString|XstSaveStringArray|XstSaveStringArrayCRLF|XstSetClipboard|XstSetCommandLineArguments|XstSetCurrentDirectory|XstSetDateAndTime|XstSetEnvironmentVariable|XstSetException|XstSetExceptionFunction|XstSetFPUControlWord|XstSetFPUPrecision|XstSetFPURounding|XstSetSystemError|XstSleep|XstStartTimer|XstStringArraySectionToString|XstStringArraySectionToStringArray|XstStringArrayToString|XstStringArrayToStringCRLF|XstStringToLongDouble|XstStringToNumber|XstStringToStringArray|XstStripChars|XstSystemErrorNumberToName|XstSystemErrorToError|XstSystemExceptionNumberToName|XstSystemExceptionToException|XstTally|XstTranslateChars|XstTRIM|XstTry|XstTypeSize|XstUnlockFileSection|XstWriteString|XxxReadFile|XxxWriteFile)\\b"
+			}]
+		}
+		,
+		"xst1": {
+			"patterns": [{
+				"name": "support.function.xl",
+				"begin": "\\b(XstBackStringToBinString|XstBackStringToBinString|XstBinStringToBackString|XstBinStringToBackStringNL|XstBinStringToBackStringThese|XstCreateDoubleImage|XstGetProgramFileName|XstLongDoubleToString|XstMergeStrings|XstNextCField|XstNextCLine|XstNextField|XstNextItem|XstNextLine|XstParse|XstPathString|XstVersion|XsxVersion|XxxFormat)\\b",
+				"end": "\\$"
+			}]
+		},
+		"xlconst":{
+			"name":"support.constant.xl",
+			"patterns": [
+			{
+				"name": "constant.language",
+				"match": "\\$\\$TRUE|\\$\\$FALSE"
+			},
+			{
+				"name": "constant.numeric",
+				"match": "\\$\\w+|\\$\\$\\w+"
+			}]
+		},
+		"character_literal":{
+			"name":"string.quoted.single",
+			"match": "'(\\\\.|[^'\\\\])'"
+		},
+		"comments": {
+			"patterns": [{
+				"name": "comment.line.xl",
+    			"begin": "'",
+    			"end": "\n"
+			}]
+		}
+	},
+	"scopeName": "source.xl"
+}

@@ -1,0 +1,80 @@
+{
+  "UNION": {
+    "prefix": "UNION",
+    "body": "\nTYPE ${1:${TM_FILENAME_BASE}}\n\tUNION\n\t\t${2:/* datatype */}\t.${0:/* compname */}\n\tEND UNION\nEND TYPE\n",
+    "description": "Code snippet for UNION",
+    "scope": "source*.xl"
+  },  
+  "TYPE": {
+    "prefix": "TYPE",
+    "body": "\nTYPE ${1:${TM_FILENAME_BASE}}\n\n\t${0:/* data */}\nEND TYPE\n",
+    "description": "Code snippet for TYPE",
+    "scope": "source*.xl"
+  },
+  "IF": {
+    "prefix": "IF",
+    "body": "\nIF (${1:/* condition */}) THEN\n\t${0:/* code */\n}\nENDIF\n",
+    "description": "Code snippet for IF THEN",
+    "scope": "source*.xl"
+  },
+  "IFEL": {
+    "prefix": "IFEL",
+    "body": "\nIF (${1:/* condition */}) THEN \n \t${2:/* code */}\nELSE {\n\t${0:/* code */}\n}\nENDIF\n",
+    "description": "Code snippet for IF() THEN ELSE",
+    "scope": "source*.xl"
+  },
+  "ELSE": {
+    "prefix": "ELSE",
+    "body": "ELSE\n\t${0:/* code */}",
+    "description": "Code snippet for ELSE",
+    "scope": "source*.xl"
+  },
+  "SELECT": {
+    "prefix": "SELECT",
+    "body": "SELECT CASE (${1:expression})\n\tCASE ${2:/* constant-expression */}:\n\t\t${3:/* code */}\n\tCASE ELSE:\n\t\t${4:/* code */}\nEND SELECT\n",
+    "description": "Code snippet for SELECT",
+    "scope": "source*.xl"
+  },
+  "DO": {
+    "prefix": "DO",
+    "body": "\nDO WHILE (${1:/* condition */})\n\t${2:/* code */}\nLOOP\n",
+    "description": "Code snippet for do while loop",
+    "scope": "source*.xl"
+  },
+  "FOR": {
+    "prefix": "FOR",
+    "body": "\nFOR ${1:i} = ${2:num} TO ${3:count}\n\t${0:/* code */}\nNEXT ${1:i}\n",
+    "description": "Code snippet for FOR loop",
+    "scope": "source*.xl"
+  },
+  "FORSTEP": {
+    "prefix": "FORSTEP",
+    "body": "\nFOR ${1:i} = ${2:num} TO ${3:count} STEP ${4:step}\n\t${0:/* code */}\nNEXT ${1:i}\n",
+    "description": "Code snippet for FOR...STEP loop",
+    "scope": "source*.xl"
+  },
+  "FUNCTION": {
+    "prefix": "FUN",
+    "body": "\n'\n' ++++++++++++++++++++\n' +++++  ${1:${TM_FILENAME_BASE}}()\n' ++++++++++++++++++++\n'\nFUNCTION ${1:${TM_FILENAME_BASE}}()\n\t${2:/* code */}\n\nEND FUNCTION\n",
+    "description": "Code snippet for FUNCTION()",
+    "scope": "source*.xl"
+  },
+  "DEF": {
+    "prefix": "DECL",
+    "body": "\nDECLARE FUNCTION ${1:${TM_FILENAME_BASE}}()\n",
+    "description": "Code snippet for if DECLARE FUNCTION",
+    "scope": "source*.xl"
+  },
+ "XLCONSOLE": {
+    "prefix": "XLCONS",
+    "body": "'\n' ++++++++++++++++++++\n' +++++  PROLOG\n' ++++++++++++++++++++\n'\n' A console program template\n'\nVERSION \"0.01\"\nCONSOLE\n'\nIMPORT \"xst\"\t\t\t\t' Standard library : required by most programs\n'\tIMPORT \"xsx\"\t\t\t\t' Extended standard library\n'\tIMPORT \"xio\"\t\t\t\t' Console input/ouput library\n\n'\tIMPORT \"xst_s.lib\"\n'\tIMPORT \"xsx_s.lib\"\n'\tIMPORT \"xio_s.lib\"\n\n'\tIMPORT \"gdi32\"\t\t\t\t' gdi32.dll\n'\tIMPORT \"user32\"\t\t\t\t' user32.dll\n'\tIMPORT \"kernel32\"\t\t\t' kernel32.dll\n'\tIMPORT \"shell32\"\t\t\t' shell32.dll\n'\tIMPORT \"msvcrt\"\t\t\t\t' msvcrt.dll\n'\nDECLARE FUNCTION Entry()\n'\n'\n' ++++++++++++++++++++\n' +++++  Entry()\n' ++++++++++++++++++++\n'\nFUNCTION Entry()\n\n  a$ = INLINE$(\"Press Enter to quit >\")\n\nEND FUNCTION\nEND PROGRAM\n",
+    "description": "Code snippet for a console xblite source",
+    "scope": "source*.xl"
+  },
+  "XLMAKE": {
+    "prefix": "XLMAKE",
+    "body": "# A XBLite makefile.\nAPP       = ${1:${WORKSPACE_NAME}}\nLIBS      =  xbl.lib xsx.lib\nOBJS      = $(APP).obj\nSTART     = START /W\nXBLITE      = xblite -conoff\nSUBSYSTEM = CONSOLE\n\n.SUFFIXES: .x .xl .xbl *.xl\n\n# The linker\nLD          = link\n\n# Flags for the linker\nLDFLAGS     = /entry:WinMain /NODEFAULTLIB /SUBSYSTEM:$(SUBSYSTEM) /INCREMENTAL:NO /RELEASE /NOLOGO /OPT:REF /ALIGN:4096\n\n# Needed resources\nRESOURCES   = $(APP).rbj\n\n# The assembler\nAS          = goasm\n\n# All needed standard libraries.\nSTDLIBS     = xblib.lib kernel32.lib advapi32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib\n\n# The main directory for xblite\nDIR         = $(XBLDIR)\n\n# Default rules to compile a XBLite files into assembly files.\n.x.asm: \n\t$(XBLITE) $?\n\n.xl.asm:\n\t$(XBLITE) $?\n\n.xbl.asm:\n\t$(XBLITE) $?\n\n*.xl.asm:\n\t$(XBLITE) $?\n\nall: $(APP).exe\n\n$(APP).exe: $(APP).obj $(RESOURCES)\n\t$(LD) $(LDFLAGS) -out:$(APP).exe $(OBJS) $(RESOURCES) $(LIBS) $(STDLIBS)\n\n$(APP).rbj: $(APP).res\n\tcvtres -i386 -NOLOGO $(APP).res -o $(APP).rbj\n\n$(APP).res: $(APP).rc\n\trc -i$(DIR)\\images -r -fo $(APP).res $(APP).rc\n\n$(APP).obj: $(APP).asm\n\t$(AS) $(APP).asm\n\n$(APP).asm: $(APP)*.xl\n\t$(START) $(XBLITE) $(APP)*.xl\n\n\nclean:\n\tIF EXIST $(APP).res DEL $(APP).res\n\tIF EXIST $(APP).rbj DEL $(APP).rbj\n\tIF EXIST $(APP).obj DEL $(APP).obj\n\tIF EXIST $(APP).asm DEL $(APP).asm\n",
+    "description": "Code snippet for a console xblite source",
+    "scope": "source*.xl"
+  }
+}
