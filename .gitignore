@@ -4,5 +4,4 @@ node_modules
 .vscodeignore
 .eslintrc.json
 test
-package-lock.json
 jsconfig.json

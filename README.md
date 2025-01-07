@@ -18,7 +18,8 @@ In Windows, just copy the folder "rlee.vscode.xblite" in "C:\Users\\\<username>\
 
 In Linux, copy the folder "rlee.vscode.xblite" in "Home\\.vscode\extensions". 
 
-If the extension doesn't show up in the Extensions' menu, delete the `extensions.json` file from the `.vscode\extensions` folder - it will be re-generated automatically when VSCode restarts.
+If the extension doesn't show up in the Extensions' menu, delete the `extensions.json` file from the `.vscode\extensions` folder - it will be re-generated automatically when VSCode restarts. 
+One might need to run `npm install` in this folder to restore the packages specified in the requirements.
 
 ## Extension Settings
 
